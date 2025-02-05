@@ -5,7 +5,6 @@
 .weather {
   width: 100vw;
   height: 100vh;
-  background-image: url(images/clear_sky.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: bottom;
@@ -17,6 +16,11 @@
   height: 100vh;
   width: 35%;
   background-color: rgba(0, 0, 0, 0.2);
+  color: white;
+}
+h2
+{
+  margin-left: 20px;
 }
 .search input {
   border: none;
@@ -39,8 +43,8 @@
 }
 .search {
   display: flex;
-  justify-content: space-between; /* Aligns items to the right */
-  align-items: center; /* Centers items vertically */
+  justify-content: space-between;
+  align-items: center;
   width: 90%;
   margin-top: 10px;
   margin-left: 5%;
@@ -51,11 +55,23 @@
   height: 1px;
   margin: 10px auto;
 }
+.weather-detail{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 .weather_detail{
   color: white;
   margin-left: 20px;
   line-height: 2.5rem;
   text-align: left;
+}
+.weather-values
+{
+  color: white;
+  margin-left: 20px;
+  line-height: 2.5rem;
+  margin-right: 10px;
 }
 .weather_forecast
 {

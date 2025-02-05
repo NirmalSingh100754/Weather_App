@@ -1,22 +1,53 @@
+import React, { useState } from "react";
 import SearchIcon from "./SearchIcon.svg";
 import "./Weather.css";
-const api_key = "adc390e108e66ab3771e17adab3aec79";
-const api_url = `https://api.openweathermap.org/data/2.5/weather?q=${city_name}&appid=${api_key}`;
+
 const Weather = () => {
+  const [details, setdetails] = useState({
+    maxtemp: null,
+    mintemp: null,
+    humidity: null,
+    wind: null,
+  });
+  const [bgim, set_bgim] = useState("/images/clear_sky.jpg");
   async function fetchAPI() {
     try {
-      let city=document.getElementById('city').value;
-      if(city=="")
-        throw new Error("Enter a valid city name");
+      let city = document.getElementById("city").value;
+      if (city == "") throw new Error("Enter a valid city name");
+      const api_key = "adc390e108e66ab3771e17adab3aec79";
+      const api_url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api_key}`;
+      const response = await fetch(api_url);
+      if (!response.ok) throw new Error("City not found");
+      const data = await response.json();
+      console.log(data);
+
+      setdetails({
+        maxtemp: (data.main.temp_max - 273).toFixed(0),
+        mintemp: (data.main.temp_min - 273).toFixed(0),
+        humidity: data.main.humidity,
+        wind: data.wind.speed.toFixed(0),
+      });
+
+      const images = {
+        "clear sky": "clear_sky.jpg",
+        "few clouds": "few_clouds.jpg",
+        "scattered clouds": "scattered_clouds.jpg",
+        "broken clouds": "broken_clouds.jpg",
+        "shower rain": "shower_rain.jpg",
+        rain: "rain.jpg",
+        thunderstorm: "thunderstorm.jpg",
+        snow: "snow.jpg",
+        mist: "mist.jpg",
+      };
+
+      const desc = data.weather[0].description.toLowerCase(); 
+      set_bgim(`/images/${images[desc] || "clear_sky.jpg"}`);
     } catch (error) {
-      alert(error.message);
+      alert("Some error occurred");
     }
-    const response = await fetch(api_url);
-    const data = await response.json();
-    console.log(data);
   }
   return (
-    <div className="weather">
+    <div className="weather" style={{ backgroundImage: `url(${bgim})` }}>
       <div className="display">
         <div className="search">
           <input type="text" placeholder="Enter city" id="city" />
@@ -25,17 +56,24 @@ const Weather = () => {
           </button>
         </div>
         <div className="line"></div>
-        <div className="weather_detail">
-          <h2>Weather Detail</h2>
-          <p> Max Tempreture</p>
-          <p> Min Tempreture</p>
-          <p> Humidity</p>
-          <p> Wind</p>
+        <h2>Weather Detail</h2>
+        <div className="weather-detail">
+          <div className="weather_detail">
+            <p> Max Tempreture</p>
+            <p> Min Tempreture</p>
+            <p> Humidity</p>
+            <p> Wind</p>
+          </div>
+          <div className="weather-values">
+            <p>{details.maxtemp}°C</p>
+            <p>{details.mintemp}°C</p>
+            <p>{details.humidity}%</p>
+            <p>{details.wind}%</p>
+          </div>
         </div>
         <div className="line"></div>
-        <div className="weather_forecast">
-          <h2>Weather Forecast</h2>
-        </div>
+        <h2>Weather Forecast</h2>
+        <div className="weather_forecast"></div>
       </div>
     </div>
   );
