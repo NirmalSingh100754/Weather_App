@@ -13,7 +13,7 @@
 }
 .display {
   border: 2px solid rgb(255, 255, 255);
-  height: 100vh;
+  height: 99vh;
   width: 35%;
   background-color: rgba(0, 0, 0, 0.2);
   color: white;
@@ -33,7 +33,7 @@ h2
 }
 .search input:focus {
   outline: none;
-  background-color: transparent;
+  background-color: none;
 }
 .search button {
   border: none;
@@ -79,4 +79,18 @@ h2
   margin-left: 20px;
   line-height: 2.5rem;
   text-align: left;
+}
+.mini-display {
+  color: white;
+  position: absolute;
+  margin-left: 20px;
+  bottom: 4px; 
+  left: 0; 
+  height: 150px;
+  width: 600px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 3rem;
 }

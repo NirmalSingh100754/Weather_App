@@ -9,7 +9,7 @@ const Weather = () => {
     humidity: null,
     wind: null,
   });
-  const [bgim, set_bgim] = useState("/images/clear_sky.jpg");
+  const [bgim, set_bgim] = useState("./images/clear_sky.jpg");
   async function fetchAPI() {
     try {
       let city = document.getElementById("city").value;
@@ -34,20 +34,23 @@ const Weather = () => {
         "scattered clouds": "scattered_clouds.jpg",
         "broken clouds": "broken_clouds.jpg",
         "shower rain": "shower_rain.jpg",
-        rain: "rain.jpg",
-        thunderstorm: "thunderstorm.jpg",
-        snow: "snow.jpg",
-        mist: "mist.jpg",
+        "rain": "rain.jpg",
+        "thunderstorm": "thunderstorm.jpg",
+        "snow": "snow.jpg",
+        "mist": "mist.jpg",
       };
 
-      const desc = data.weather[0].description.toLowerCase(); 
-      set_bgim(`/images/${images[desc] || "clear_sky.jpg"}`);
+      const desc = data.weather[0].description.toLowerCase();
+      set_bgim(`./images/${images[desc] || "clear_sky.jpg"}`);
     } catch (error) {
       alert("Some error occurred");
     }
   }
   return (
     <div className="weather" style={{ backgroundImage: `url(${bgim})` }}>
+      <div className="mini-display">
+        <h1>8°C</h1>
+      </div>
       <div className="display">
         <div className="search">
           <input type="text" placeholder="Enter city" id="city" />
