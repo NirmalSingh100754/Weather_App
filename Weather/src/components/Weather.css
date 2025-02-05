@@ -1,14 +1,66 @@
-*
-{
-    margin: 0%;
-    padding: 0%;
+* {
+  margin: 0%;
+  padding: 0%;
 }
-.weather
+.weather {
+  width: 100vw;
+  height: 100vh;
+  background-image: url(images/clear_sky.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  display: flex;
+  flex-direction: row-reverse;
+}
+.display {
+  border: 2px solid rgb(255, 255, 255);
+  height: 100vh;
+  width: 35%;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.search input {
+  border: none;
+  background-color: transparent;
+  color: white;
+  font-size: 1.2rem;
+}
+.search input::placeholder {
+  color: white;
+}
+.search input:focus {
+  outline: none;
+  background-color: transparent;
+}
+.search button {
+  border: none;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+}
+.search {
+  display: flex;
+  justify-content: space-between; /* Aligns items to the right */
+  align-items: center; /* Centers items vertically */
+  width: 90%;
+  margin-top: 10px;
+  margin-left: 5%;
+}
+.line {
+  background-color: white;
+  width: 95%;
+  height: 1px;
+  margin: 10px auto;
+}
+.weather_detail{
+  color: white;
+  margin-left: 20px;
+  line-height: 2.5rem;
+  text-align: left;
+}
+.weather_forecast
 {
-    width: 100vw;
-    height: 100vh;
-    background-image:url(images/clear_sky.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: bottom;
+  color: white;
+  margin-left: 20px;
+  line-height: 2.5rem;
+  text-align: left;
 }
