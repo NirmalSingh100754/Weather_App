@@ -31,7 +31,7 @@ const Weather = () => {
     updateTime();
     const interval = setInterval(updateTime, 1000);
 
-    return () => clearInterval(interval); // Cleanup interval on unmount
+    return () => clearInterval(interval);
   }, []);
 
   async function fetchAPI() {
