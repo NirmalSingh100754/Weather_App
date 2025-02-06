@@ -1,6 +1,8 @@
 * {
   margin: 0%;
   padding: 0%;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 .weather {
   width: 100vw;
@@ -18,8 +20,7 @@
   background-color: rgba(0, 0, 0, 0.2);
   color: white;
 }
-h2
-{
+h2 {
   margin-left: 20px;
 }
 .search input {
@@ -55,26 +56,24 @@ h2
   height: 1px;
   margin: 10px auto;
 }
-.weather-detail{
+.weather-detail {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
-.weather_detail{
+.weather_detail {
   color: white;
   margin-left: 20px;
   line-height: 2.5rem;
   text-align: left;
 }
-.weather-values
-{
+.weather-values {
   color: white;
   margin-left: 20px;
   line-height: 2.5rem;
   margin-right: 10px;
 }
-.weather_forecast
-{
+.weather_forecast {
   color: white;
   margin-left: 20px;
   line-height: 2.5rem;
@@ -84,8 +83,8 @@ h2
   color: white;
   position: absolute;
   margin-left: 20px;
-  bottom: 4px; 
-  left: 0; 
+  bottom: 4px;
+  left: 0;
   height: 150px;
   width: auto;
   display: flex;
@@ -95,17 +94,35 @@ h2
   font-size: 3rem;
   gap: 20px;
 }
-.div2 h2
-{
-
+.div2 h2 {
   font-size: 30px;
 }
-.div2 p{
+.div2 p {
   font-size: 20px;
 }
-.div3 p,img
-{
+.div3 p,
+img {
   padding: 0%;
   margin: 0%;
   font-size: 20px;
+}
+.weather_forecast {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.wf1,
+.wf2,
+.wf3,
+.wf4,
+.wf5 {
+  height: 100px;
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.weather_forecast::-webkit-scrollbar {
+  width: 4px;
 }
