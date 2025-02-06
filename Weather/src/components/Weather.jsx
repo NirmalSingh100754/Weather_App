@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from "react";
+import humidity from "./humidity.svg";
 import SearchIcon from "./SearchIcon.svg";
+import tempmax from "./tempmax.svg";
+import tempmin from "./tempmin.svg";
 import "./Weather.css";
+import wind from "./wind.svg";
 
 const Weather = () => {
   const [details, setDetails] = useState({
-    maxtemp: null,
-    mintemp: null,
-    humidity: null,
-    wind: null,
-    currtemp: null,
-    city_name: null,
-    description: null,
-    icon: null,
+    maxtemp: 0.0,
+    mintemp: 0.0,
+    humidity: 0,
+    wind: 0,
+    currtemp: 0,
+    city_name: "NA",
+    description: "NA",
+    icon: "NA",
   });
 
   const [forecast, setForecast] = useState([]);
@@ -52,21 +56,24 @@ const Weather = () => {
       const data = await response.json();
       const forecastResponse = await fetch(forecastapi);
       const forecastData = await forecastResponse.json();
-      const arrtime = [],
+      const arricon = [],
         arrtemp = [],
-        arrdesc = [];
-      for (let i = 0; i < 20; i++) {
-        arrtime.push(
+        arrdesc = [],
+        dt_txt = [];
+      for (let i = 0; i < 40; i++) {
+        arricon.push(
           `https://openweathermap.org/img/wn/${forecastData.list[i].weather[0].icon}.png`
         );
         arrtemp.push((forecastData.list[i].main.temp - 273).toFixed(0));
         arrdesc.push(forecastData.list[i].weather[0].description);
+        dt_txt.push(forecastData.list[i].dt_txt);
       }
 
       setForecast({
-        time: arrtime,
+        icon: arricon,
         temp: arrtemp,
         description: arrdesc,
+        dt_txt: dt_txt,
       });
       console.log(data);
       console.log(forecastData);
@@ -91,10 +98,10 @@ const Weather = () => {
         "broken clouds": "broken_clouds.jpg",
         "overcast clouds": "broken_clouds.jpg",
         "shower rain": "shower_rain.jpg",
-        "rain": "rain.jpg",
-        "thunderstorm": "thunderstorm.jpg",
-        "snow": "snow.jpg",
-        "mist": "mist.jpg",
+        rain: "rain.jpg",
+        thunderstorm: "thunderstorm.jpg",
+        snow: "snow.jpg",
+        mist: "mist.jpg",
       };
 
       setBgim(
@@ -112,11 +119,11 @@ const Weather = () => {
       <div className="mini-display">
         <h1>{details.currtemp}°C</h1>
         <div className="div2">
-          <h4>{details.city_name}</h4>
+          <h5>{details.city_name}</h5>
           <p>{dateTime}</p>
         </div>
         <div className="div3">
-          <img src={details.icon} alt="icon not found" />
+          <img src={details.icon} alt="NA" />
           <p>{details.description}</p>
         </div>
       </div>
@@ -137,19 +144,31 @@ const Weather = () => {
             <p> Wind</p>
           </div>
           <div className="weather-values">
-            <p>{details.maxtemp}°C</p>
-            <p>{details.mintemp}°C</p>
-            <p>{details.humidity}%</p>
-            <p>{details.wind} km/h</p>
+            <p>
+              {details.maxtemp}°C <img src={tempmax} alt="" />{" "}
+            </p>
+            <p>
+              {details.mintemp}°C
+              <img src={tempmin} alt="" />
+            </p>
+            <p>
+              {details.humidity}%<img src={humidity} alt="" />
+            </p>
+            <p>
+              {details.wind}k/h <img src={wind} alt="" />
+            </p>
           </div>
         </div>
         <div className="line"></div>
         <h2>Weather Forecast</h2>
         <div className="weather_forecast">
-          {forecast.time?.slice(0, 20).map((icon, index) => (
+          {forecast.icon?.slice(0, 40).map((icon, index) => (
             <div className="wf" key={index}>
-              <div className="">
+              <div className="wf1">
                 <img src={icon} alt="Weather icon" />
+              </div>
+              <div className="date-time">
+                <p>{forecast.dt_txt ? forecast.dt_txt[index] : ""}</p>
                 <p>{forecast.description ? forecast.description[index] : ""}</p>
               </div>
               <p>{forecast.temp[index]}°C</p>

@@ -72,8 +72,13 @@ h2 {
   margin-left: 20px;
   line-height: 2.5rem;
   margin-right: 10px;
+  text-align: right;
 }
-
+.weather-values img {
+  height: 20px;
+  width: 20px;
+  margin-left: 3px;
+}
 .mini-display {
   color: white;
   position: absolute;
@@ -89,11 +94,9 @@ h2 {
   font-size: 3rem;
   gap: 20px;
 }
-.div2 h2 {
-  font-size: 30px;
-}
+
 .div2 p {
-  font-size: 20px;
+  font-size: 15px;
 }
 .div3 p,
 img {
@@ -102,13 +105,14 @@ img {
   font-size: 20px;
 }
 .weather_forecast {
+  margin-right: 3px;
   margin-left: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   text-align: left;
   max-height: 450px;
-  overflow-y: auto; 
+  overflow-y: auto;
 }
 
 .wf {
@@ -117,4 +121,26 @@ img {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+}
+.wf1 img {
+  height: 75px;
+}
+.date-time {
+  font-size: 80%;
+}
+.date-time {
+  margin-right: auto;
+  margin-left: 0%;
+}
+.weather_forecast::-webkit-scrollbar {
+  width: 8px;
+  margin-right: 3px;
+}
+.weather_forecast::-webkit-scrollbar-thumb {
+  background-color: gray;
+  border-radius: 10px;
+}
+.weather_forecast::-webkit-scrollbar-track {
+  background: #f0f0f2;
+  border-radius: 10px;
 }
