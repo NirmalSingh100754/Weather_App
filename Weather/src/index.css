@@ -1,4 +1,3 @@
-/* Add this rule to set the placeholder text color to white */
 input::placeholder {
-    color: white;
+  color: white;
 }

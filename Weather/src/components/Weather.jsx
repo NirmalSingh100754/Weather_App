@@ -22,6 +22,32 @@ const Weather = () => {
   const [bgim, setBgim] = useState("./images/clear_sky.jpg");
   const [dateTime, setDateTime] = useState("");
 
+  const formatDate = (timestamp) => {
+    const date = new Date(timestamp * 1000);
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+    const options = { hour: "numeric", minute: "numeric", hour12: true };
+    const timeString = date.toLocaleTimeString([], options);
+
+    if (date >= today && date < tomorrow) {
+      return `Today at ${timeString}`;
+    } else if (
+      date >= tomorrow &&
+      date <
+        new Date(
+          tomorrow.getFullYear(),
+          tomorrow.getMonth(),
+          tomorrow.getDate() + 1
+        )
+    ) {
+      return `Tomorrow at ${timeString}`;
+    } else {
+      return date.toLocaleDateString() + " at " + timeString;
+    }
+  };
+
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
@@ -66,7 +92,7 @@ const Weather = () => {
         );
         arrtemp.push((forecastData.list[i].main.temp - 273).toFixed(0));
         arrdesc.push(forecastData.list[i].weather[0].description);
-        dt_txt.push(forecastData.list[i].dt_txt);
+        dt_txt.push(formatDate(forecastData.list[i].dt));
       }
 
       setForecast({
