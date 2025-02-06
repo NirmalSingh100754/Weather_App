@@ -73,12 +73,7 @@ h2 {
   line-height: 2.5rem;
   margin-right: 10px;
 }
-.weather_forecast {
-  color: white;
-  margin-left: 20px;
-  line-height: 2.5rem;
-  text-align: left;
-}
+
 .mini-display {
   color: white;
   position: absolute;
@@ -107,22 +102,19 @@ img {
   font-size: 20px;
 }
 .weather_forecast {
+  margin-left: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  text-align: left;
+  max-height: 450px;
+  overflow-y: auto; 
 }
-.wf1,
-.wf2,
-.wf3,
-.wf4,
-.wf5 {
-  height: 100px;
+
+.wf {
   width: 95%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-}
-.weather_forecast::-webkit-scrollbar {
-  width: 4px;
 }

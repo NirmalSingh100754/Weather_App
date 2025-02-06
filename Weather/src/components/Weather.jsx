@@ -52,18 +52,21 @@ const Weather = () => {
       const data = await response.json();
       const forecastResponse = await fetch(forecastapi);
       const forecastData = await forecastResponse.json();
+      const arrtime = [],
+        arrtemp = [],
+        arrdesc = [];
+      for (let i = 0; i < 20; i++) {
+        arrtime.push(
+          `https://openweathermap.org/img/wn/${forecastData.list[i].weather[0].icon}.png`
+        );
+        arrtemp.push((forecastData.list[i].main.temp - 273).toFixed(0));
+        arrdesc.push(forecastData.list[i].weather[0].description);
+      }
 
       setForecast({
-        time1: `https://openweathermap.org/img/wn/${forecastData.list[0].weather[0].icon}.png`,
-        time2: `https://openweathermap.org/img/wn/${forecastData.list[1].weather[0].icon}.png`,
-        time3: `https://openweathermap.org/img/wn/${forecastData.list[2].weather[0].icon}.png`,
-        time4: `https://openweathermap.org/img/wn/${forecastData.list[3].weather[0].icon}.png`,
-        time5: `https://openweathermap.org/img/wn/${forecastData.list[4].weather[0].icon}.png`,
-        temp1: (forecastData.list[0].main.temp - 273).toFixed(0),
-        temp2: (forecastData.list[1].main.temp - 273).toFixed(0),
-        temp3: (forecastData.list[2].main.temp - 273).toFixed(0),
-        temp4: (forecastData.list[3].main.temp - 273).toFixed(0),
-        temp5: (forecastData.list[4].main.temp - 273).toFixed(0),
+        time: arrtime,
+        temp: arrtemp,
+        description: arrdesc,
       });
       console.log(data);
       console.log(forecastData);
@@ -88,10 +91,10 @@ const Weather = () => {
         "broken clouds": "broken_clouds.jpg",
         "overcast clouds": "broken_clouds.jpg",
         "shower rain": "shower_rain.jpg",
-        rain: "rain.jpg",
-        thunderstorm: "thunderstorm.jpg",
-        snow: "snow.jpg",
-        mist: "mist.jpg",
+        "rain": "rain.jpg",
+        "thunderstorm": "thunderstorm.jpg",
+        "snow": "snow.jpg",
+        "mist": "mist.jpg",
       };
 
       setBgim(
@@ -143,28 +146,15 @@ const Weather = () => {
         <div className="line"></div>
         <h2>Weather Forecast</h2>
         <div className="weather_forecast">
-          <div className="wf1">
-            <img src={forecast.time1} alt="" />
-            <p>{forecast.temp1}°C</p>
-          </div>
-          <div className="wf2">
-            <img src={forecast.time2} alt="" />
-            <p>{forecast.temp2}°C</p>
-          </div>
-          <div className="wf3">
-            <img src={forecast.time3} alt="" />
-            <p>{forecast.temp3}°C</p>
-          </div>
-
-          <div className="wf4">
-            <img src={forecast.time4} alt="" />
-            <p>{forecast.temp4}°C</p>
-          </div>
-
-          <div className="wf5">
-            <img src={forecast.time5} alt="" />
-            <p>{forecast.temp5}°C</p>
-          </div>
+          {forecast.time?.slice(0, 20).map((icon, index) => (
+            <div className="wf" key={index}>
+              <div className="">
+                <img src={icon} alt="Weather icon" />
+                <p>{forecast.description ? forecast.description[index] : ""}</p>
+              </div>
+              <p>{forecast.temp[index]}°C</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>
