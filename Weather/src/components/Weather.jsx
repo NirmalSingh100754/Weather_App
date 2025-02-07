@@ -120,7 +120,7 @@ const Weather = () => {
       const images = {
         "clear sky": "clear_sky.jpg",
         "few clouds": "few_clouds.jpg",
-        "scattered clouds": "scattered_clouds.jpg",
+        "scattered clouds": "scattered_cloud.jpg",
         "broken clouds": "broken_clouds.jpg",
         "overcast clouds": "broken_clouds.jpg",
         "shower rain": "shower_rain.jpg",
