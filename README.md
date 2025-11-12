@@ -28,11 +28,20 @@ This project provides real-time weather information for any city across the worl
 
 ```
 
-Weather-App/
+Weather/
 │
+├── public/ # Static assets
+├── src/ # Main source code
+│ ├── script.js # JavaScript logic and API integration
+│ ├── style.css # App styling
+│ └── index.html # Root HTML file
+│
+├── .gitignore
+├── eslint.config.js
 ├── index.html
-├── style.css
-├── script.js
+├── package.json
+├── package-lock.json
+├── vite.config.js
 └── README.md
 
 ````
