@@ -1,6 +1,4 @@
-Of course 😄 — here’s your **complete and perfect README.md code** in **one single block**, ready to copy and paste directly into your GitHub repository:
 
-```markdown
 # 🌦️ Weather App
 
 A simple and responsive **Weather App** built using **HTML5**, **CSS3**, and **JavaScript**, powered by the **OpenWeather API**.  
